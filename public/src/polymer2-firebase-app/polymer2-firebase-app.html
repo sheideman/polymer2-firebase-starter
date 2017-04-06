@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="app-login.html">
+<dom-module id="polymer2-firebase-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <firebase-app
+  auth-domain="fir-polymer2-starter.firebaseapp.com"
+  database-url="https://fir-polymer2-starter.firebaseio.com"
+  api-key="AIzaSyD9LghzGjJAqIeWz62d6qwsQMybGcit2iQ"
+  storage-bucket="fir-polymer2-starter.appspot.com"
+  messaging-sender-id="163847739388">
+</firebase-app>
+<app-login></app-login>
+  </template>
+
+  <script>
+    class MyApplication extends Polymer.Element {
+      static get is() { return 'polymer2-firebase-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polymer2-firebase-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MyApplication.is, MyApplication);
+  </script>
+</dom-module>
