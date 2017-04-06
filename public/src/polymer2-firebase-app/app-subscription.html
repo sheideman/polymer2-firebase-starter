@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-messaging.html">
+<dom-module id="app-subscription">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      </style>
+<firebase-auth
+user="{{user}}">
+</firebase-auth>
+
+<firebase-messaging id="messaging"
+  token="{{token}}"
+  on-message="handleMessage">
+</firebase-messaging>
+<firebase-document
+path="/users/[[user.uid]]/token"
+value="[[token]]">
+</firebase-document>
+<paper-toggle-button
+  id="subscription"
+  on-tap="toggleSubscription"
+  checked="[[token]]">
+  Subscribe to notifications
+</paper-toggle-button>
+<p>Token: [[token]]</p>
+</template>
+
+<script>
+  class AppSubscription extends Polymer.Element {
+    static get is() { return 'app-subscription'; }
+    static get properties() {
+      return {
+        notes: {
+          type: Object
+        }
+      };
+    }
+constructor(){
+ super()
+ console.log('app-subscription constructor fired')
+}
+ready() {
+ super.ready();
+ console.log('app-subscription Ready fired')
+}
+toggleSubscription(){
+  this.$.messaging.requestPermission().then(function() {
+  // permission was granted
+}, function(err) {
+  // permission was denied
+});
+}
+handleMessage(){
+  console.log('message received',arguments);
+}
+};
+
+  window.customElements.define(AppSubscription.is, AppSubscription);
+</script>
+</dom-module>

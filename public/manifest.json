@@ -2,5 +2,6 @@
   "name": "polymer2-firebase-starter",
   "short_name": "polymer2-firebase-starter",
   "start_url": "/",
-  "display": "standalone"
+  "display": "standalone",
+  "gcm_sender_id": "103953800507"
 }

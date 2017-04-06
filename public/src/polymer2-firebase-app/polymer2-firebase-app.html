@@ -1,6 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="app-login.html">
+<link rel="import" href="app-subscription.html">
+<link rel="import" href="endpoint-el.html">
 <dom-module id="polymer2-firebase-app">
   <template>
     <style>
@@ -15,7 +17,13 @@
   storage-bucket="fir-polymer2-starter.appspot.com"
   messaging-sender-id="163847739388">
 </firebase-app>
-<app-login></app-login>
+<header>
+  <app-login></app-login>
+</header>
+<main>
+  <endpoint-el></endpoint-el>
+  <app-subscription></app-subscription>
+</main>
   </template>
 
   <script>

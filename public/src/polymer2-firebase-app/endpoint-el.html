@@ -1,0 +1,95 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-query.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<dom-module id="endpoint-el">
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding:10px;
+      }
+      #create{
+        width:100%;
+      }
+      #notes-list {
+      list-style: none;
+      padding:0;
+      margin:0;
+      }
+      #notes-list li{
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+      }
+      #notes-list .content{
+        @apply(--layout-flex);
+        padding:8px;
+      }
+      #notes-controls{
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+    </style>
+    <firebase-auth
+    user="{{user}}">
+    </firebase-auth>
+    <firebase-query
+      id="query"
+        path="/users/[[user.uid]]/notes"
+        data="{{notes}}"></firebase-query>
+<div id="notes-list">
+  <div class="card">
+    <ul>
+      <template is="dom-repeat" items="{{notes}}" as="note">
+        <li>
+          <p class="content">[[note.content]]</p>
+          <paper-button id="remove" raised on-tap="remove" note="[[note]]">Remove Note</paper-button>
+        </li>
+      </template>
+    </ul>
+  </div>
+
+<paper-input id="input" label="Take a note..."></paper-input>
+<div id="notes-controls">
+  <paper-button id="add" on-tap="add">Add Note</paper-button>
+</div>
+</div>
+  </template>
+
+  <script>
+    class EndpointEl extends Polymer.Element {
+      static get is() { return 'endpoint-el'; }
+      static get properties() {
+        return {
+          notes: {
+            type: Object
+          }
+        };
+      }
+ constructor(){
+   super()
+   console.log('endpoint-el constructor fired')
+ }
+ ready() {
+   super.ready();
+   console.log('endpoint-el Ready fired')
+ }
+ add(){
+   this.$.query.ref.push({
+     content: this.$.input.value
+   });
+   this.$.input.value = null;
+ }
+ remove(e){
+   console.log(e.target.note.$key)
+   var key = e.target.note.$key;
+   this.$.query.ref.child(key).remove();
+ }
+
+};
+
+    window.customElements.define(EndpointEl.is, EndpointEl);
+  </script>
+</dom-module>
