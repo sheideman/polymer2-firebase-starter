@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="app-login.html">
 <link rel="import" href="app-subscription.html">
 <link rel="import" href="endpoint-el.html">
@@ -17,10 +18,16 @@
   storage-bucket="fir-polymer2-starter.appspot.com"
   messaging-sender-id="163847739388">
 </firebase-app>
+<firebase-auth
+id="auth"
+user="{{user}}"
+status-known="{{statusKnown}}"
+provider="google"
+on-error="handleError">
 <header>
   <app-login></app-login>
 </header>
-<main>
+<main hidden$="[[!user]]">
   <endpoint-el></endpoint-el>
   <app-subscription></app-subscription>
 </main>
@@ -36,6 +43,9 @@
             value: 'polymer2-firebase-app'
           }
         };
+      }
+      ready(){
+        super.ready()
       }
     }
 

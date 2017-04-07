@@ -44,7 +44,9 @@
     <ul>
       <template is="dom-repeat" items="{{notes}}" as="note">
         <li>
-          <p class="content">[[note.content]]</p>
+          <p class="content">[[note.en.content]]</p>
+          <p class="content">[[note.es.content]]</p>
+          <p class="content">[[note.it.content]]</p>
           <paper-button id="remove" raised on-tap="remove" note="[[note]]">Remove Note</paper-button>
         </li>
       </template>
@@ -78,8 +80,15 @@
  }
  add(){
    this.$.query.ref.push({
-     content: this.$.input.value
+     en:{
+       content: this.$.input.value,
+       translated: false
+     }
+
+   }).then((note)=>{
+     console.log(note);
    });
+
    this.$.input.value = null;
  }
  remove(e){

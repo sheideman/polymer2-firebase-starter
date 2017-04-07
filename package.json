@@ -1,0 +1,20 @@
+{
+    "name": "polymer2-firebase-starter",
+    "version": "1.0.0",
+    "description": "quick starter for polymer 2.0 & firebase with auth and messaging",
+
+    "scripts": {
+        "build": "gulp"
+    },
+    "engines": {
+        "node": "7.7.1"
+    },
+    "private": true,
+    "devDependencies": {
+        "del": "^2.2.1",
+        "gulp": "gulpjs/gulp#4.0",
+        "merge-stream": "^1.0.0",
+        "plylog": "^0.4.0",
+        "polymer-build": "^0.6.0"
+    }
+}

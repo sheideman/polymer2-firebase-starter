@@ -1,4 +1,11 @@
 {
+  "entrypoint":"public/index.html",
+  "shell":"public/src/polymer2-firebase-app/polymer2-firebase-app.html",
+  "extraDependencies":[
+    "public/manifest.json",
+    "public/firebase-messaging-sw.js",
+    "public/bower_components/webcomponentsjs/webcomponents-loader.js"
+  ],
   "lint": {
     "rules": [
       "polymer-2"

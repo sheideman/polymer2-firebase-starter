@@ -1,6 +1,6 @@
 {
   "name": "polymer2-firebase-starter",
-  "main": "index.html",
+  "main": "public/index.html",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0-rc.2",
     "polymerfire": "2.0-preview",

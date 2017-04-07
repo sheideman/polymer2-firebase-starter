@@ -1,0 +1,1 @@
+curl --header "Authorization: key=SERVER_KEY_FROM_FIREBASE_MESSAGING_CONSOLE" --header "Content-Type: application/json" -d '{"to": "SENDER_TOKEN", "notification": {"title": "Hello World", "body": "This is a notification"}}' https://fcm.googleapis.com/fcm/send
